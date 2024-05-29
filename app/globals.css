@@ -2,32 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+  font-family: 'Forum';
+  src: url('/fonts/Forum-Regular.otf') format('truetype');
+  font-weight: 400; /* This is the regular weight */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  scroll-behavior: smooth;
+}
+.cloud1{
+  animation:movearound 100s linear ;
+}
+.cloud2{
+animation: movearound2 100s linear infinite;
+}
+@keyframes movearound {
+  0%{
+    left: 0;
+  }100%{
+    left: 100%;
+  }
+}
+@keyframes movearound2 {
+  0%{
+    left: 50%;
+  }100%{
+    left: 100%;
+  }
+}
+body {
+  font-family: "Forum", cursive; /* Use Forum font family for the entire body */
+}
+#next-section{
+  background-image: url('/images/starsbg.jpeg');
+  background-repeat: 1;
+  background-attachment: fixed;
+}
+.header h2{
+  font-size: 18px;
+}
+.headerActive{
+  backdrop-filter: blur(0);
+  bottom: 100%;
+  position: fixed;
+  top: 0;
+  animation:fadeIn .5s linear ;
+  min-height: 10%;
+}
+@keyframes fadeIn {
+  0%{
+      top: 0;
+  }100%{
+    top: 0;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
+
+.video{
+  background-size: contain;
+}
 @layer utilities {
+  .backdrop-blur-xsm {
+    backdrop-filter: blur(2px); /* Adjust the blur radius as needed */
+  }
   .text-balance {
     text-wrap: balance;
+  }
+  .wrapper {
+    @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+  }
+  .h1-bold {
+    @apply font-bold text-[50px] leading-[48px] lg:text-[50px] lg:leading-[60px]  xl:text-[58px] xl:leading-[74px];
+  }
+
+  /* 40 */
+  .h2-bold {
+    @apply font-bold text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
+  }
+
+  .h2-medium {
+    @apply font-medium text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
+  }
+
+  /* 36 */
+  .h3-bold {
+    @apply font-bold text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
   }
 }
