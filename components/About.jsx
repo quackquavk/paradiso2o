@@ -38,10 +38,10 @@ const About = () => {
       start: "top center",
       end: "bottom center",
       animation: gsap.timeline().to(musicIcon, {
-        duration: 2,
+        duration: 5,
         opacity: 1,
       }),
-      toggleActions: "play none none reverse",
+      toggleActions: "play none none reset",
     });
 
 

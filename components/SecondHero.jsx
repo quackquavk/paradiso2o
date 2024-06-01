@@ -70,7 +70,7 @@ const SecondHero = () => {
       className="md:h-[150vh] px-4 md:px-0 h-fit w-full m-0 bg-black relative overflow-hidden"
     >
       <div className="relative h-fit mt-[20vh] block">
-      <Image src='https://upload.wikimedia.org/wikipedia/commons/a/a9/Rotating_earth_%28large%29_transparent.gif?20230514191507'unoptimized width={200} height={200} alt="earth"  className="absolute top-[60vh] right-[20vw]"/>
+      <Image src='/images/earthrotation.gif'unoptimized width={200} height={200} alt="earth"  className="absolute top-[60vh] right-[20vw]"/>
         
         <Image
           src="/images/cloud1.png"
