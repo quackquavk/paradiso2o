@@ -3,35 +3,46 @@ import { headerItems } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import SecondHero from "/components/SecondHero";
+import About from "/components/About";
+import Events from "@/components/Events";
+import Footer from "@/components/Footer";
+
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Home = () => {
   const currentUrl = usePathname();
-  const [isSticky, setIsSticky] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState(false);
+  const menuRef = useRef(null);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
 
-  // Define your header items with names and corresponding hrefs
-  const headerItems = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Menu", href: "/menu" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Events", href: "/events" },
-    { name: "Contact Us", href: "/contact" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      if (currentScrollPos >= window.innerHeight) {
+        setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+        setPrevScrollPos(currentScrollPos);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos, visible]);
+
   const handleHeaderScroll = () => {
     const header = document.querySelector(".header");
     const scrollY = window.scrollY;
     const winheight = window.innerHeight;
-    console.log(winheight);
 
     if (scrollY >= winheight) {
       header.classList.add("headerActive");
-      console.log("header added");
     } else {
       header.classList.remove("headerActive");
-      console.log("header removed ");
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleHeaderScroll);
     return () => {
@@ -39,9 +50,31 @@ const Home = () => {
     };
   }, []);
 
+  const toggleMenu = () => {
+    setIsMenuActive((prev) => !prev);
+  };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuActive(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isMenuActive) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuActive]);
+
   return (
     <>
-      <section className="h-screen w-full flex flex-col items-center justify-center m-0 relative">
+      <section className="h-screen min-w-[100vw] flex flex-col items-center justify-center m-0 relative">
         <video
           autoPlay
           muted
@@ -49,14 +82,42 @@ const Home = () => {
           src="/vids/bgProto.mp4"
           className="h-screen w-full object-cover absolute inset-0 z-0 video"
         ></video>
+        {isMenuActive && (
+          <div
+            ref={menuRef}
+            className="absolute z-20 bg-[#b48484]  h-fit pb-[10vh] flex flex-col items-center gap-2 mobile-header bottom-0 w-full"
+          >
+            <div className="flex flex-col items-center gap-4 pb-10 pt-5">
+              {headerItems.map((item, index) => (
+                <Link href={item.href} key={index}>
+                  <div className="flex flex-col items-center ">
+                    <p
+                      className={`${
+                        item.href === currentUrl
+                          ? "text-orange-500"
+                          : "text-black"
+                      } text-[20px]`}
+                    >
+                      {item.name}
+                    </p>
 
+                    <span className="border-b-2 border-black h-0.5 opacity-25 w-full mt-1"></span>
+                  </div>
+                </Link>
+              ))}
+              <p className="text-[20px]">Book a table</p>
+            </div>
+          </div>
+        )}
         <h1 className="text-6xl md:text-[300px] text-white z-10">PARADISO</h1>
         <header
           id="header"
-          className="header px-10  backdrop-blur-sm text-white text-center flex py-4 sticky z-50 w-full top-[100%] justify-between items-center"
+          className={`header px-10 backdrop-blur-sm text-white text-center flex py-1 sticky z-50 w-full top-[100%] justify-between items-center ${
+            visible ? "" : "hidden"
+          }`}
         >
-          <Image src="/images/logo.png" width={50} height={50} alt="logo" />
-          <div className="justify-center items-center gap-[30px]  md:flex header hidden">
+          <Image src="/images/logo.png" width={60} height={60} alt="logo" />
+          <div className="justify-center items-center gap-[30px] md:flex hidden">
             {headerItems.map((link, index) => (
               <Link key={index} href={link.href}>
                 <h2
@@ -69,30 +130,25 @@ const Home = () => {
               </Link>
             ))}
           </div>
-          <h2 className="text-[18px]">Book a table</h2>
+          <h2 className="text-[18px] md:block hidden">Book a table</h2>
+          <div
+            onClick={toggleMenu}
+            className={`${
+              isMenuActive ? "pointer-events-none" : ""
+            } md:hidden block cursor-pointer z--30 `}
+          >
+            {isMenuActive ? (
+              <FaTimes size={20} color="black" />
+            ) : (
+              <FaBars size={20} />
+            )}
+          </div>
         </header>
       </section>
-      <section
-        id="next-section"
-        className="md:h-[200vh] h-[100vh] w-full m-0 bg-black relative overflow-hidden"
-      >
-        <div className="relative h-fit mt-[20vh] block">
-          <Image src='/images/cloud1.png' height={100} width={100} alt="cloud"  className="h-[30vh] w-auto cloud1 z-10 absolute top-20"/>
-          <Image src='/images/cloud1.png' height={100} width={100} alt="cloud"  className="h-[10vh] w-auto cloud2 z-10  relative bottom-[100px]"/>
-        </div>
-        <div className="relative h-[60vh] w-full flex items-center justify-center ">
-          <Image
-            src="/images/paradiso_apng_op_gr.png"
-            width={100}
-            height={100}
-            alt="water"
-            className="w-auto h-full object-contain absolute"
-          />
-          <h1 className="text-6xl md:text-[150px] text-white z-10 relative top-[-10%]">
-            PARADISO
-          </h1>
-        </div>
-      </section>
+      <SecondHero />
+      <About />
+      <Events />
+      <Footer />
     </>
   );
 };
