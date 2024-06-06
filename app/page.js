@@ -82,7 +82,7 @@ const Home = () => {
         <video
           autoPlay
           loop
-          src="https://paradisosportsbar.com/wp-content/uploads/2023/04/PARADISO-PROMOTION-VIDEO-2022.mp4"
+          src="/vids/bgProto.mp4"
           className="h-screen  w-full object-cover absolute inset-0 z-0 video"
         ></video>
         <h1 className="text-6xl md:text-[300px] text-white z-10">PARADISO</h1>
