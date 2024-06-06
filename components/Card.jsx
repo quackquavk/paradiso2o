@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const EventCard = ({ events, index }) => {
   return (
-    <ul className="container">
+    <ul className="md:h- container">
       <li className="card event-card" style={{ '--card-index': index }} key={events.event_name}>
         <div className="img--container">
           <img src={events.event_image} alt={events.event_name} />

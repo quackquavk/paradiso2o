@@ -43,6 +43,7 @@ const Gallery = () => {
     setCurrentImageIndex(index);
     setCurrentImage(images[index]);
     setIsDialogOpen(true);
+    console.log(index)
   };
 
   const closeDialog = () => {
@@ -54,7 +55,7 @@ const Gallery = () => {
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
+    ); 
   };
 
   const prevImage = () => {
@@ -76,7 +77,7 @@ const Gallery = () => {
                   key={index}
                   className="image-wrapper"
                   ref={(el) => (imageRefs.current[index] = el)}
-                  onClick={() => openDialog(index)}
+                  onClick={() => openDialog(index +2)}
                 >
                   <Image
                     src={src}
@@ -87,6 +88,7 @@ const Gallery = () => {
                     priority
                     quality={100}
                     unoptimized
+                    className="galleryimage "
                   />
                 </div>
               ))}
@@ -97,7 +99,7 @@ const Gallery = () => {
                   key={index}
                   className="image-wrapper"
                   ref={(el) => (imageRefs.current[index + 26] = el)}
-                  onClick={() => openDialog(index)}
+                  onClick={() => openDialog(index + 24)}
                 >
                   <Image
                     src={src}
@@ -108,6 +110,7 @@ const Gallery = () => {
                     priority
                     quality={100}
                     unoptimized
+                    className="galleryimage"
                   />
                 </div>
               ))}
@@ -118,7 +121,7 @@ const Gallery = () => {
                   key={index}
                   className="image-wrapper"
                   ref={(el) => (imageRefs.current[index + 52] = el)}
-                  onClick={() => openDialog(index)}
+                  onClick={() => openDialog(index+45)}
                 >
                   <Image
                     src={src}
@@ -129,6 +132,7 @@ const Gallery = () => {
                     priority
                     quality={100}
                     unoptimized
+                    className="galleryimage"
                   />
                 </div>
               ))}
@@ -139,24 +143,20 @@ const Gallery = () => {
 
       {isDialogOpen && (
   <div className="dialog-overlay" onClick={closeDialog}>
-    <div className="dialog-content" onClick={(e) => e.stopPropagation()}>
-      <div className="image-container">
+    <div className=" bg-black" onClick={(e) => e.stopPropagation()}>
         {images.map((src, index) => (
           <div key={index} className="image-wrapper" style={{ display: index === currentImageIndex ? 'block' : 'none' }}>
             <Image
-              src={src}
+              src={currentImage}
               alt={`Gallery Image ${index}`}
+              objectFit="contain"
               layout="fill"
-              objectFit="cover"
-              className="gallery-image"
+              className="gallery-image img min-w-[100%]"
+              unoptimized
             />
           </div>
         ))}
-      </div>
-      <div className="navigation-buttons">
-        <IoIosArrowBack className="nav-button" onClick={prevImage} />
-        <IoIosArrowForward className="nav-button" onClick={nextImage} />
-      </div>
+     
       <IoMdClose className="close-icon" color="white" onClick={closeDialog} />
     </div>
   </div>

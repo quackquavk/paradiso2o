@@ -11,7 +11,7 @@ const Events = () => {
       <section className="pb-[10vh] min-h-[100vh] pt-[10vh] bg-black relative w-full events">
         <h1 className="h1-bold text-white text-center">Upcoming Events</h1>
         <p className="text-white text-center">****(Events are yet to be listed for production)****</p>
-        <div className="grid grid-cols-3 gap-4 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-auto">
           {eventDetails.map((events, index) => (
             <EventCard
               key={events.event_name}

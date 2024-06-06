@@ -52,7 +52,7 @@ const SecondHero = () => {
   return (
     <section
       id="next-section"
-      className="md:h-[150vh] px-4 md:px-0 h-fit w-full m-0 bg-black relative overflow-hidden"
+      className="md:h-[150vh] px-4 md:px-0 h-[120vh] w-full m-0 bg-black relative overflow-hidden"
     >
       <div className="relative h-fit mt-[20vh] block">
         <Image
@@ -98,12 +98,13 @@ const SecondHero = () => {
         className="relative h-[60vh]  w-full flex items-center justify-center parralx-container"
         ref={parallaxRef}
       >
+        <Image src='/images/nube2.png' width={100} height={100} alt="nube" className="absolute w-auto h-[40vh] object-contain " />
         <Image
           src="/images/paradiso_apng_op_gr.png"
-          width={100}
-          height={100}
+          width={200}
+          height={200}
           alt="water"
-          className="w-auto h-full object-contain absolute"
+          className="w-auto min-h-[70vh] object-contain absolute"
           unoptimized
         />
         <h1 className="text-6xl md:text-[150px] text-white z-10 relative top-[-10%]">

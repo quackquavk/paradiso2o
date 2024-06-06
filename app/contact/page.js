@@ -8,8 +8,8 @@ const Contact = () => {
   return (
     <>
       <Header />
-      <section className="md:min-h-[92vh] flex items-center justify-center py-[10vh] bg-black    text-white ">
-        <div className="bg-gray-900  w-full py-5 flex items-center justify-center gap-10  my-auto contactsection ">
+      <section className="md:min-h-[95vh] flex items-center justify-center py-[10vh] bg-black    text-white ">
+        <div className="bg-gray-900  w-full md:py-5  flex md:flex-row flex-col items-center justify-center gap-10  my-auto contactsection ">
           <Image
             src="/images/galleryImage77.jpg"
             width={600}

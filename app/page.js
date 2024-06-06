@@ -17,6 +17,7 @@ const Home = () => {
   const menuRef = useRef(null);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [headerActive, setHeaderActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,8 +39,10 @@ const Home = () => {
 
     if (scrollY >= winheight) {
       header.classList.add("headerActive");
+      setHeaderActive(true);
     } else {
       header.classList.remove("headerActive");
+      setHeaderActive(false);
     }
   };
 
@@ -74,20 +77,22 @@ const Home = () => {
 
   return (
     <>
-      <section className="h-screen min-w-[100vw] flex flex-col items-center justify-center m-0 relative">
+      <section className="h-screen min-w-[100vw] max-w-[100vw] flex flex-col items-center justify-center m-0 relative">
         <video
           autoPlay
-          muted
           loop
-          src="/vids/bgProto.mp4"
-          className="h-screen w-full object-cover absolute inset-0 z-0 video"
+          muted
+          src="https://paradisosportsbar.com/wp-content/uploads/2023/04/PARADISO-PROMOTION-VIDEO-2022.mp4"
+          className="h-screen  w-full object-cover absolute inset-0 z-0 video"
         ></video>
         {isMenuActive && (
           <div
             ref={menuRef}
-            className="absolute z-20 bg-[#b48484]  h-fit pb-[10vh] flex flex-col items-center gap-2 mobile-header bottom-0 w-full"
+            className={`absolute z-50 bg-white text-white h-fit  flex flex-col items-center gap-2 w-full ${
+              headerActive ? "headerActive1 " : "bottom-0"
+            }`}
           >
-            <div className="flex flex-col items-center gap-4 pb-10 pt-5">
+            <div className="flex flex-col items-center gap-4 pb-10 pt-5 bg-white">
               {headerItems.map((item, index) => (
                 <Link href={item.href} key={index}>
                   <div className="flex flex-col items-center ">
@@ -105,7 +110,10 @@ const Home = () => {
                   </div>
                 </Link>
               ))}
-              <p className="text-[20px]">Book a table</p>
+              <Link href="/contact">
+                {" "}
+                <p className="text-[20px]">Book a table</p>
+              </Link>
             </div>
           </div>
         )}
@@ -130,7 +138,10 @@ const Home = () => {
               </Link>
             ))}
           </div>
-          <h2 className="text-[18px] md:block hidden">Book a table</h2>
+          <Link href="/contact">
+            {" "}
+            <p className="text-[20px] hidden md:block">Book a table</p>
+          </Link>
           <div
             onClick={toggleMenu}
             className={`${
@@ -140,7 +151,7 @@ const Home = () => {
             {isMenuActive ? (
               <FaTimes size={20} color="black" />
             ) : (
-              <FaBars size={20} />
+              <FaBars size={20} color="white" />
             )}
           </div>
         </header>
