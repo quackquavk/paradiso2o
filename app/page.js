@@ -141,7 +141,7 @@ const Home = () => {
           <Link href="/contact">
             {" "}
             <p className="text-[20px] hidden md:block">Book a table</p>
-          </Link>
+          </Link> 
           <div
             onClick={toggleMenu}
             className={`${
