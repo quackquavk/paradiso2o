@@ -1,4 +1,5 @@
 "use client";
+
 import { headerItems } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
@@ -81,50 +82,19 @@ const Home = () => {
         <video
           autoPlay
           loop
-          muted
           src="https://paradisosportsbar.com/wp-content/uploads/2023/04/PARADISO-PROMOTION-VIDEO-2022.mp4"
           className="h-screen  w-full object-cover absolute inset-0 z-0 video"
         ></video>
-        {isMenuActive && (
-          <div
-            ref={menuRef}
-            className={`absolute z-50 bg-white text-white h-fit  flex flex-col items-center gap-2 w-full ${
-              headerActive ? "headerActive1 " : "bottom-0"
-            }`}
-          >
-            <div className="flex flex-col items-center gap-4 pb-10 pt-5 bg-white">
-              {headerItems.map((item, index) => (
-                <Link href={item.href} key={index}>
-                  <div className="flex flex-col items-center ">
-                    <p
-                      className={`${
-                        item.href === currentUrl
-                          ? "text-orange-500"
-                          : "text-black"
-                      } text-[20px]`}
-                    >
-                      {item.name}
-                    </p>
-
-                    <span className="border-b-2 border-black h-0.5 opacity-25 w-full mt-1"></span>
-                  </div>
-                </Link>
-              ))}
-              <Link href="/contact">
-                {" "}
-                <p className="text-[20px]">Book a table</p>
-              </Link>
-            </div>
-          </div>
-        )}
         <h1 className="text-6xl md:text-[300px] text-white z-10">PARADISO</h1>
         <header
           id="header"
-          className={`header px-10 backdrop-blur-sm text-white text-center flex py-1 sticky z-50 w-full top-[100%] justify-between items-center ${
+          className={`header px-10 backdrop-blur-sm text-white text-center flex py-1 sticky z-40 w-full top-[100%] justify-between items-center ${
             visible ? "" : "hidden"
           }`}
         >
-          <Image src="/images/logo.png" width={60} height={60} alt="logo" />
+          <Link href="/" passHref>
+            <Image src="/images/logo.png" width={60} height={60} alt="logo" />
+          </Link>
           <div className="justify-center items-center gap-[30px] md:flex hidden">
             {headerItems.map((link, index) => (
               <Link key={index} href={link.href}>
@@ -138,28 +108,62 @@ const Home = () => {
               </Link>
             ))}
           </div>
-          <Link href="/contact">
-            {" "}
-            <p className="text-[20px] hidden md:block">Book a table</p>
-          </Link> 
+          <Link href="/contact" passHref legacyBehavior>
+            <a className="text-[20px] hidden md:block">Book a table</a>
+          </Link>
           <div
             onClick={toggleMenu}
             className={`${
               isMenuActive ? "pointer-events-none" : ""
-            } md:hidden block cursor-pointer z--30 `}
+            } md:hidden block cursor-pointer z-50`}
           >
             {isMenuActive ? (
-              <FaTimes size={20} color="black" />
+              <FaTimes size={20} color="white" />
             ) : (
               <FaBars size={20} color="white" />
             )}
           </div>
         </header>
+        <div
+          ref={menuRef}
+          className={`fixed top-0 left-0 h-full w-64 bg-white z-40 transform  ${
+            isMenuActive ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 ease-in-out`}
+        >
+          <div className="flex justify-end p-4">
+            <FaTimes
+              onClick={toggleMenu}
+              className="text-[24px] cursor-pointer text-black"
+            />
+          </div>
+          <div className="flex flex-col items-start p-4">
+            {headerItems.map((link, index) => (
+              <Link key={index} href={link.href} passHref legacyBehavior>
+                <a
+                  className={`block py-2 px-4 text-lg ${
+                    currentUrl === link.href ? "text-orange-400" : "text-black"
+                  }`}
+                  onClick={() => setIsMenuActive(false)}
+                >
+                  {link.name}
+                </a>
+              </Link>
+            ))}
+            <Link href="/contact" passHref legacyBehavior>
+              <a className="block py-2 px-4 text-lg">Book a table</a>
+            </Link>
+          </div>
+        </div>
+        {isMenuActive && (
+          <div
+            className="fixed inset-0 bg-black opacity-50 z-30"
+            onClick={toggleMenu}
+          ></div>
+        )}
       </section>
       <SecondHero />
       <About />
       <Events />
-      <Footer />
     </>
   );
 };

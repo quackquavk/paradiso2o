@@ -52,7 +52,7 @@ const SecondHero = () => {
   return (
     <section
       id="next-section"
-      className="md:h-[150vh] px-4 md:px-0 h-[120vh] w-full m-0 bg-black relative overflow-hidden"
+      className="md:h-[140vh] px-4 md:px-0 h-fit w-full m-0 bg-black relative overflow-hidden"
     >
       <div className="relative h-fit mt-[20vh] block">
         <Image
@@ -111,7 +111,7 @@ const SecondHero = () => {
           PARADISO
         </h1>
       </div>
-      <div className="h-[20vh] mt-[10vh] flex items-center text-center w-full justify-center flex-col">
+      <div className="h-[20vh] mt-[10vh] flex items-center text-center w-full justify-center flex-col " >
         <h1
           ref={headingRef}
           className="text-[30px] md:text-[100px] text-orange-50"
@@ -120,7 +120,7 @@ const SecondHero = () => {
         </h1>
         <h3
           ref={paragraphRef}
-          className="text-[15px  ] md:text-[25px] wrapper text-orange-50"
+          className="text-[15px  ] md:text-[25px] wrapper text-orange-50 pb-10"
         >
           {splitText(
             "Nestled along the serene shores of Fewa Lake in the heart of Lakeside, Pokhara, lies a haven of delight—Paradiso Sports Bar and Grill. This enchanting establishment, true to its celestial name, offers an oasis where the vibrant spirit of Pokhara converges with the tranquil beauty of its natural surroundings. As the sun dips behind the Annapurna range, casting golden hues across the water, Paradiso comes alive with the soulful strains of live music, echoing across the lake."

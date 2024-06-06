@@ -7,7 +7,7 @@ const EventCard = ({ events, index }) => {
     <ul className="md:h- container">
       <li className="card event-card" style={{ '--card-index': index }} key={events.event_name}>
         <div className="img--container">
-          <Image src={events.event_image} alt={events.event_name} />
+          <Image src={events.event_image} alt={events.event_name} width={100} height={100}/>
         </div>
         <div className="card--text">
           <div className="text--container">

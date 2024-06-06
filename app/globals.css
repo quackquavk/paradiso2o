@@ -629,6 +629,20 @@ body {
   animation: fadeInUp 1s ease-out forwards; /* Apply the animation */
   animation-delay: calc(var(--card-index) * 0.2s); /* Staggered animation */
 }
+.fade-out-left {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.fade-out-right {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.fade-in-left {
+  opacity: 1;
+  transform: translateX(0)}
+
 
 .contactsection {
   animation: fadeIn 1s ease-in;
@@ -636,9 +650,7 @@ body {
 .footer-list:last-child {
   order: 2;
 }
-.transition-transform {
-  transition: transform 0.3s ease-in-out;
-}
+
 .transition-transform {
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }

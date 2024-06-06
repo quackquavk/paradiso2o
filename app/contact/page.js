@@ -19,7 +19,7 @@ const Contact = () => {
           />
           <div className="bg-red h-fit flex flex-col items-center justify-center gap-5">
             <h1 className="h1-bold text-start  cursor-pointer">Contact</h1>
-            <div class="border-t border-white border-1 min-w-[80%] "></div>
+            <div className="border-t border-white border-1 min-w-[80%] "></div>
             <div className="flex flex-col items-center justify-center">
               <h1 className="h1-bold leading-relaxed">PARADISO</h1>
 
