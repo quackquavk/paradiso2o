@@ -11,6 +11,7 @@ import Events from "@/components/Events";
 import Footer from "@/components/Footer";
 
 import { FaBars, FaTimes } from "react-icons/fa";
+import Head from "next/head";
 
 const Home = () => {
   const currentUrl = usePathname();
@@ -79,11 +80,27 @@ const Home = () => {
   return (
     <>
       <section className="h-screen min-w-[100vw] max-w-[100vw] flex flex-col items-center justify-center m-0 relative">
+        <Head>
+          <title>Background Video in Next.js</title>
+          <meta
+            name="description"
+            content="Example of a background video in a Next.js application"
+          />
+          <link rel="icon" href="/favicon.ico" />
+          <link
+            rel="preload"
+            href="/vids/bgProto.mp4"
+            as="video"
+            type="video/mp4"
+          />
+        </Head>
         <video
           autoPlay
           loop
+          playsInline
+          preload="auto"
           src="/vids/bgProto.mp4"
-          className="h-screen  w-full object-cover absolute inset-0 z-0 video"
+          className="h-screen w-full object-cover absolute inset-0 z-0"
         ></video>
         <h1 className="text-6xl md:text-[300px] text-white z-10">PARADISO</h1>
         <header
