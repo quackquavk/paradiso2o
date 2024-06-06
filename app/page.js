@@ -95,12 +95,12 @@ const Home = () => {
           />
         </Head>
         <video
+          class="video-background"
           autoPlay
           loop
-          playsInline
+          muted
           preload="auto"
-          src="/vids/bgProto.mp4"
-          className="h-screen w-full object-cover absolute inset-0 z-0"
+          src="https://paradisosportsbar.com/wp-content/uploads/2023/04/PARADISO-PROMOTION-VIDEO-2022.mp4"
         ></video>
         <h1 className="text-6xl md:text-[300px] text-white z-10">PARADISO</h1>
         <header
