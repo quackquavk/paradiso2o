@@ -242,8 +242,9 @@ body {
   bottom: 100%;
   position: fixed;
   top: 0;
-  min-height: 8%;
-  animation: fadeInFromTop 0.5s linear forwards; /* Apply the fadeInFromTop animation */
+  min-height: 6%;
+  transition: all;
+  animation: fadeInFromTop 0.5s linear; /* Apply the fadeInFromTop animation */
 }
 
 .fade-in {

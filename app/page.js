@@ -82,22 +82,23 @@ const Home = () => {
       <section className="h-screen min-w-[100vw] max-w-[100vw] flex flex-col items-center justify-center m-0 relative">
     
         <video
-          className="video-background"
+        className="absolute min-h-[100vh]  w-auto object-cover"
+        
           autoPlay
           loop
           muted
           preload="auto"
           src="https://paradisosportsbar.com/wp-content/uploads/2023/04/PARADISO-PROMOTION-VIDEO-2022.mp4"
         ></video>
-        <h1 className="text-6xl md:text-[300px] text-white z-10">PARADISO</h1>
+        <h1 className="text-6xl md:text-[300px] text-white z-10 absolute">PARADISO</h1>
         <header
           id="header"
-          className={`header px-10 backdrop-blur-sm text-white text-center flex py-1 sticky z-40 w-full top-[100%] justify-between items-center ${
+          className={`header px-10 backdrop-blur-sm text-white text-center flex py-.5 absolute  z-40 w-full bottom-0 justify-between items-center ${
             visible ? "" : "hidden"
           }`}
         >
           <Link href="/" passHref>
-            <Image src="/images/logo.png" width={60} height={60} alt="logo" />
+            <Image src="/images/logo.png" width={50} height={50} alt="logo" />
           </Link>
           <div className="justify-center items-center gap-[30px] md:flex hidden">
             {headerItems.map((link, index) => (
