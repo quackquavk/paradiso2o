@@ -80,22 +80,9 @@ const Home = () => {
   return (
     <>
       <section className="h-screen min-w-[100vw] max-w-[100vw] flex flex-col items-center justify-center m-0 relative">
-        <Head>
-          <title>Background Video in Next.js</title>
-          <meta
-            name="description"
-            content="Example of a background video in a Next.js application"
-          />
-          <link rel="icon" href="/favicon.ico" />
-          <link
-            rel="preload"
-            href="/vids/bgProto.mp4"
-            as="video"
-            type="video/mp4"
-          />
-        </Head>
+    
         <video
-          class="video-background"
+          className="video-background"
           autoPlay
           loop
           muted
